@@ -13,11 +13,9 @@
   <label>Change the owner:</label>
 
   <% @owners.each do |owner| %>
-    <input type="checkbox" name="pet[owner_id]" id="<%= owner.id %>" value="<%= owner.id %>"
-    <%= 'checked' if @owner.id == owner.id %>></input><span><%= owner.name %></span>
+    <input type="radio" name="pet[owner_id]" id="<%= owner.id %>" value="<%= owner.id %>"
+    <%= 'checked' if @owner.id != nil && @owner.id == owner.id %>></input><span><%= owner.name %></span>
   <% end %>
-
-
 
   <br></br>
 
