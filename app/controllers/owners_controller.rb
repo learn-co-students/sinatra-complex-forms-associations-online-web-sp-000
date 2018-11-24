@@ -18,7 +18,6 @@ class OwnersController < ApplicationController
 
   get '/owners/:id/edit' do 
     @owner = Owner.find(params[:id])
-    # @pets = @owner.pets
     @pets = Pet.all
     erb :'/owners/edit'
   end
