@@ -47,6 +47,7 @@ describe "Pets Controller" do
       click_button "Create Pet"
       @owner = Owner.last
       @pet = Pet.last
+      # binding.pry
       expect(@pet.name).to eq("Pippa")
       expect(@pet.owner.name).to eq("Mary Nelson")
     end
@@ -76,6 +77,7 @@ describe "Pets Controller" do
 
     it " loads form to edit a pet and his owner" do
       visit "/pets/#{@pet.id}/edit"
+      # binding.pry
       expect(page).to have_field('pet_name')
       expect(page.has_checked_field?(@owner.id)).to eq(true)
       expect(page).to have_field('owner[name]')
