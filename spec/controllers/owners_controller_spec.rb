@@ -82,7 +82,7 @@ describe "Owners Controller" do
       expect(page).to have_field('pet[name]')
     end
 
-     it "edit's the owner's name" do
+    it "edit's the owner's name" do
       visit "/owners/#{@owner.id}/edit"
       fill_in "owner[name]", :with => "Carla Gremillion"
       click_button "Update Owner"
