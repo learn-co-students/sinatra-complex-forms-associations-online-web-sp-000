@@ -37,14 +37,10 @@
     @pet = Pet.find(params[:id])
     @pet.update(name: params[:pet_name])
     @pet.owner = Owner.find(params[:owner_id])
-    if params[:owner][:name].empty?
-      @pet.save
-    else 
-      @owner = Owner.create(name: params[:owner][:name])
-      @pet.owner = @owner 
-      @pet.save
+    if !params[:owner][:name].empty?
+      @pet.owner = Owner.create(name: params[:owner][:name]) 
     end
-    #binding.pry
+    @pet.save
     redirect to "pets/#{@pet.id}"
   end
 end
