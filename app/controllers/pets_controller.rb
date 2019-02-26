@@ -48,15 +48,3 @@
     redirect to "pets/#{@pet.id}"
   end
 end
-=begin
-    @owner = Owner.find(params[:owner_id])
-    @pet = Pet.find(params[:id])
-    @pet.owner = @owner
-    @pet.update(name: params[:pet_name])
-    binding.pry
-    if @pet.owner 
-      #binding.pry
-      @owner = Owner.create(name: params[:owner][:name])
-      @pet.owner = @owner
-      @pet.update
-=end
