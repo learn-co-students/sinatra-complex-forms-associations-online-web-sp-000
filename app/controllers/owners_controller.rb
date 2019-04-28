@@ -30,7 +30,8 @@ class OwnersController < ApplicationController
   end
 
   patch '/owners/:id' do
-    owner = Owner.update(params[:owner])
+    owner = Owner.find(params[:id])
+    owner.update(params[:owner])
     if params[:pet][:name] != ""
       owner.pets << Pet.create(name:params[:pet][:name])
     end
