@@ -1,4 +1,4 @@
 # Add seed data here. Seed your database with `rake db:seed`
-sophie = Owner.create(name: "Sophie")
-Pet.create(name: "Maddy", owner: sophie)
-Pet.create(name: "Nona", owner: sophie)
+maddy = Owner.create(name: "Maddy")
+Pet.create(name: "Catsby", owner: maddy)
+Pet.create(name: "Casey", owner: maddy)

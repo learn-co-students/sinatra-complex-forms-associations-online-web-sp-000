@@ -1,1 +1,2 @@
-show.erb
+<h1><%=Pet.find_by(params[:id]).name%></h1>
+<h4>Owner: <%=Pet.find(params[:id]).owner.name%></h4>
