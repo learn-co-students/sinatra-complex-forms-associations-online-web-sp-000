@@ -1,3 +1,21 @@
+<% require 'pry' %>
+
 <h1>Update Pet</h1>
 
-
+<form method="POST" action="/pets/<%=@pet.id%>">
+  <input id="hidden" type="hidden" name="_method" value="PATCH">
+  
+  <p>Name: <input type='text' name='pet[name]' id='pet_name' value='<%=@pet.name%>'></p>
+  <p>Choose an existing owner</p>
+  <% @owners.each do |owner| %>
+    <p><input type='radio' name='pet[owner_id][]' value='<%=owner.id%>' id='<%=owner.id%>' <%= 'checked' if owner.pets.include?(@pet)%>><%=owner.name%></input>
+    </p>
+  <% end %> 
+  
+  
+  <p>or enter the name of a new owner: <br>
+  name: <input type='text' name='owner[name]' id='owner_name'/></p>
+  
+  <input type='submit' value='Update Pet'/>
+  
+</form>
