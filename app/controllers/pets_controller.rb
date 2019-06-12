@@ -29,17 +29,28 @@ class PetsController < ApplicationController
     erb :'/pets/show'
   end
 
+  get '/pets/:id/edit' do
+    @pet = Pet.find(params[:id])
+    erb :'/pets/edit'
+  end
+
   patch '/pets/:id' do 
     #       ####### bug fix
     # if !params[:pet].keys.include?("owner_ids")
     # params[:pet]["owner_ids"] = []
     # end
     # #######
- 
+
+    ####### bug fix
+    if !params[:owner].keys.include?("pet_ids")
+      params[:owner]["pet_ids"] = []
+      end
+      #######
+
     @pet = Pet.find(params[:id])
     @pet.update(params["pet"])
     if !params["owner"]["name"].empty?
-      @pet.owner << Pet.create(name: params["owner"]["name"])
+      @pet.owner << Owner.create(name: params["owner"]["name"])
     end
 
     @pet.save
