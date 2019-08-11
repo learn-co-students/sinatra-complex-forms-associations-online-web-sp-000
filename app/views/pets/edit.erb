@@ -7,41 +7,33 @@
     <label>Edit the Pet's Name:</label>
     <br>
     <input type="text" name="pet[name]" value="<%= @pet.name %>" id="pet_name">
-<<<<<<< HEAD
-
-=======
- 
->>>>>>> a190141b0f8fc08b54202689c47d3b4643d30eee
     <br>
     <p>Select an existing owner for a pet, or create a new one below.</p>
 
 
     <h3>Existing Owners</h3>
     <% @owners.each do |owner| %>
-<<<<<<< HEAD
       <input type="radio" name="pet[owner_id]" id="<%= owner.id %>" value="<%= owner.id %>" <% if @pet.owner.id == owner.id %>
       checked="checked"
       <% end %>> <%=owner.name%></input><br>
     <% end %>
     <br>
 
-=======
       <input type="radio" name="pet[owner_id]" id="<%= owner.id %>" value="<%= owner.id %>"> <%='checked' if @pet.owner == owner%>> <%=owner.name%> </input><br>
     <% end %>
     <br>
  
->>>>>>> a190141b0f8fc08b54202689c47d3b4643d30eee
     <h3>New Owner</h3>
     <label>Owner Name: </label>
     <br>
     <input type="text" name="owner[name]" id="owner_name"></input>
     <br><br>
-<<<<<<< HEAD
+
 
     <input type="submit" value="Update Pet">
   </form>
-=======
+
  
     <input type="submit" value="Update Pet">
   </form>
->>>>>>> a190141b0f8fc08b54202689c47d3b4643d30eee
+
