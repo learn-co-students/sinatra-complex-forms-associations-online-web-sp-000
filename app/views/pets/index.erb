@@ -1,1 +1,8 @@
-index.erb
+<h1>This is the list of all pets</h1>
+<h2> click on an pet to view their page :) </h2>
+
+<ol>
+<% @pets.each do |pet| %>
+<li> <a href="/pets/<%=pet.id%>"><%=pet.name%></a></li>
+<%end%>
+</ol>
