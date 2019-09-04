@@ -1,1 +1,8 @@
-index.erb
+<h1>This is the list of all owners</h1>
+<h2> click on an owner to view their page :) </h2>
+
+<ol>
+<% @owners.each do |owner| %>
+<li> <a href="/owners/<%=owner.id%>"><%=owner.name%></a></li>
+<%end%>
+</ol>
