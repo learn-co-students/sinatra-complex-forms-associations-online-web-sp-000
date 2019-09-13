@@ -11,11 +11,13 @@ class PetsController < ApplicationController
   end
 
   post '/pets' do 
-    binding.pry
      @pet = Pet.create(params[:pet])
-    if !params["owner"]["name"].empty?
+     if Owner.find_by_id(params["pet"]["owner_id"])
+      @pet.owner = Owner.find_by_id(params["pet"]["owner_id"])
+    else 
       @pet.owner = Owner.create(name: params["owner"]["name"])
     end
+    @pet.save
       redirect "pets/#{@pet.id}"
   end
 
@@ -24,7 +26,14 @@ class PetsController < ApplicationController
     erb :'/pets/show'
   end
 
+  get '/pets/:id/edit' do
+    @pet = Pet.find_by_id(params[:id])
+    @owners = Owner.all
+    erb :'/pets/edit'
+  end
+
   patch '/pets/:id' do 
+    binding.pry
       ####### bug fix
       if !params[:pet].keys.include?("owner_ids")
        params[:pet]["owner_ids"] = []
