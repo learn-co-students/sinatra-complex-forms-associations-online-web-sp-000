@@ -1,1 +1,11 @@
+<h1>Welcome to Pet index</h1>
+
+<% @pets.each do |o| %>
+
+<h3><a href="/pets/<%=o.id%>"><%= o.name %></a></h3>
+<% end %>
+
+<a href="/pets/new">Create New Pet</a>
+
+<br>
 index.erb
