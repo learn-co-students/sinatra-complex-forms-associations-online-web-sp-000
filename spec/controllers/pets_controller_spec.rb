@@ -10,10 +10,10 @@ describe "Pets Controller" do
 
     it " loads form to create a new pet" do
       visit '/pets/new'
-      expect(page).to have_field('pet_name')
+      expect(page).to have_field('pet[name]')
     end
 
-    it "has a form with a radio buttons for existing owners" do
+    it "has a form with a checkbox for existing owners" do
       @owner1 = Owner.create(:name => "Cricky")
       @owner2 = Owner.create(:name => "Chris")
 
@@ -33,7 +33,7 @@ describe "Pets Controller" do
       @owner2 = Owner.create(:name => "Chris")
       visit '/pets/new'
       fill_in "pet_name", :with => "Michael"
-      choose(@owner1.id)
+      check(@owner1.id)
       click_button "Create Pet"
       @pet = Pet.last
       expect(@pet.name).to eq("Michael")
@@ -56,7 +56,7 @@ describe "Pets Controller" do
       @owner2 = Owner.create(:name => "Kaitlin")
       visit '/pets/new'
       fill_in "pet_name", :with => "Joeseph"
-      choose(@owner2.id)
+      check(@owner2.id)
       click_button "Create Pet"
       @pet= Pet.last
       expect(page.current_path).to eq("/pets/#{@pet.id}")
@@ -70,13 +70,13 @@ describe "Pets Controller" do
     end
 
     it "can visit '/pets/:id/edit' " do
-      get "/pets/#{@pet.id}/edit"
+      get "/owners/#{@pet.id}/edit"
       expect(last_response.status).to eq(200)
     end
 
     it " loads form to edit a pet and his owner" do
       visit "/pets/#{@pet.id}/edit"
-      expect(page).to have_field('pet_name')
+      expect(page).to have_field('pet[name]')
       expect(page.has_checked_field?(@owner.id)).to eq(true)
       expect(page).to have_field('owner[name]')
     end
