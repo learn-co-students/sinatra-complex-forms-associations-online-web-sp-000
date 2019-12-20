@@ -1,7 +1,5 @@
 <h1><%=@pet.name%></h1>
 <h4>Owner:</h4>
-<ul>
-  <%@pet.owners.each do |owner|%>
-  <li><%=owner.name%></li>
-  <%end%>
-</ul>
+<h5> <%=@pet.owner.name %> </h5>
+
+<a href="/pets/<%= @pet.id %>/edit">  EDIT  </a> 
