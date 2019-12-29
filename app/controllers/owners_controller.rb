@@ -10,7 +10,6 @@ class OwnersController < ApplicationController
   end
 
   post '/owners' do 
-    
   end
 
   get '/owners/:id/edit' do 
