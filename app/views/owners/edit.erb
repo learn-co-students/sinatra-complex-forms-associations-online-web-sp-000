@@ -1,2 +1,36 @@
+<!--We want a user to be able to edit everything about an owner: the owner's name, any existing pet associations,
+ and any new pet the user would like to create and associate with that owner. So, our form should have the standard,
+ pre-filled name field as well as dynamically generated checkboxes for existing pets.
+ The checkboxes should be automatically checked if the given owner already owns that pet.
+ We'll need the same form field we built earlier for a user to create a new pet to be associated with our owner.-->
+
 <h1>Update Owner</h1>
 
+<h2>Edits for <%= @owner.name %></h2>
+ 
+  <form action="/owners/<%= @owner.id %>" method="POST">
+    <input id="hidden" type="hidden" name="_method" value="patch">
+    <label>Edit the Owner's Name:</label>
+    <br>
+    <input type="text" name="owner[name]" value="<%= @owner.name %>">
+ 
+    <br>
+    <p>Select an existing pet or create a new one below.</p>
+ 
+ <!--we added the checked property to each checkbox with a condition to test whether the given pet is already present in the current owner's collection of pets.
+  We implemented this if statement by wrapping the checked attribute in ERB tags, allowing us to use Ruby on our view page.-->
+    
+    <h3>Existing Pets</h3>
+    <% @pets.each do |pet| %>
+      <input type="checkbox" name="owner[pet_ids][]" id="<%= pet.id %>" value="<%= pet.id %>" <%='checked' if @owner.pets.include?(pet) %>><%= pet.name %></input><br>
+    <% end %>
+    <br>
+ 
+    <h3>New Pet</h3>
+    <label>Pet Name: </label>
+    <br>
+    <input type="text" name="pet[name]" id="pet_name"></input>
+    <br><br>
+ 
+    <input type="submit" value="Update Owner">
+  </form>

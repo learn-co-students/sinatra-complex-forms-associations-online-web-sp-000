@@ -1,3 +1,6 @@
+<!--form that dynamically generates checkboxes for each of the existing pets.
+Added a field to that form in which a user can fill out the name for a brand new pet.-->
+
 <h1>Create a new Owner</h1>
 
 <form action="/owners" method="POST">
@@ -7,11 +10,39 @@
 
   <input type="text" name="owner[name]">
 
+  <br>
+  <p>Select an existing pet or create a new one below.</p>
+
   <h3>Existing Pets</h3>
   <% @pets.each do |pet| %>
+
+    <!--That checkbox has a name of "owner[pet_ids][]" because we want to structure our params hash such that
+    the array of pet IDs is stored inside the "owner" hash. We are aiming to associate the pets that have
+    these IDs with the new owner.
+    We give the checkbox a value of the given pet's ID. This way, when that checkbox is selected, its value, i.e.,
+    the pet's ID, is what gets sent through to the params hash
+    We give the checkbox an id of the given pet's ID so that our Capybara test can find the checkbox using the pet's ID.
+    example:   {"owner"=>{"name"=>"Adele", "pet_ids"=>["1", "2"]}}-->
+    <!--our params hash has a key of "owner" that points to a value that is a hash containing two keys: "name", with a 
+    value of the name entered into the form, and "pet_ids", with a value of an array containing the ids of all of the
+    pets we selected via our checkbox-->
+    
     <input type="checkbox" name="owner[pet_ids][]" id="<%= pet.id %>" value="<%= pet.id %>"><%= pet.name %><br>
   <% end %>
   <br>
+
+  <!--we want a user to be able to create a new owner, select some existing pets to associate with that owner, and also have the
+  option of creating a new pet to associate with that owner.
+  {"owner"=>{"name"=>"Adele", "pet_ids"=>["1", "2"]}, "pet"=>{"name"=>"Fake Pet"}}
+  if the user does not fill out the field to name and create a new pet
+    {"owner"=>{"name"=>"Adele", "pet_ids"=>["1", "2"]}, "pet"=>{"name"=>""}} 
+    The above line of code would create a new pet with a name of an empty string and associate it to our owner.-->
+
+  <h3>New Pet</h3>
+  <label>Pet Name: </label>
+  <br>
+  <input type="text" name="pet[name]" id="pet_name"></input>
+  <br><br>
 
   <input type="submit" value="Create Owner">
 </form>
