@@ -2,25 +2,36 @@ class PetsController < ApplicationController
 
   get '/pets' do
     @pets = Pet.all
-    erb :'/pets/index' 
+    erb :'/pets/index'
   end
 
-  get '/pets/new' do 
+  get '/pets/new' do
     erb :'/pets/new'
   end
 
-  post '/pets' do 
+  post '/pets' do
+     @pet= Pet.create(params[:pet])
+     if params[:pet][:owner_id]
+       @pet.owner = Owner.find_by_id(params[:pet][:owner_id])
+     end
+     @pet.save
+     if params[:owner][:name].size > 0
+       @pet.owner = Owner.create(name: params["owner"]["name"])
+       @pet.save
+     end
+     redirect to "pets/#{@pet.id}"
+   end
 
-    redirect to "pets/#{@pet.id}"
-  end
-
-  get '/pets/:id' do 
+  get '/pets/:id' do
     @pet = Pet.find(params[:id])
     erb :'/pets/show'
   end
 
-  patch '/pets/:id' do 
-
+  patch '/pets/:id' do
+    @pet = Pet.find_by_id(params[:id])
+    @pet.update(params["pet"])
+    @pet.owner = Owner.create(name: params["owner"]["name"]) if params["owner"]["name"] != ""
+    @pet.save
     redirect to "pets/#{@pet.id}"
   end
 end
