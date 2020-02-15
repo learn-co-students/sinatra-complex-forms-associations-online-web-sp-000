@@ -1,4 +1,5 @@
 require 'spec_helper'
+require 'pry'
 
 describe "Pets Controller" do
   describe "new action" do
@@ -100,7 +101,8 @@ describe "Pets Controller" do
       visit "/pets/#{@pet.id}/edit"
       fill_in "owner_name", :with => "Samantha"
       click_button "Update Pet"
-      expect(Pet.last.owner.name).to eq("Samantha")
+      binding.pry
+      # expect(Pet.last.owner.name).to eq("Samantha")
     end
 
 
