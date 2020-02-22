@@ -1,1 +1,5 @@
-index.erb
+<h1>Owners Index Page</h1>
+<%@owners.each do |owner|%>
+  <p> <%=owner.id%>. <%=owner.name%></p>
+<%end>
+    
