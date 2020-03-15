@@ -15,3 +15,6 @@ gem 'sqlite3', '~>1.3.6'
 gem 'thin'
 gem 'tux'
 gem 'capybara'
+
+gem 'standardrb'
+gem 'htmlbeautifier'
