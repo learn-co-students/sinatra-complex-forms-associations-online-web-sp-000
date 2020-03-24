@@ -91,6 +91,7 @@ describe "Owners Controller" do
 
     it "edit's the owner's pets with an existing pet" do
       @shaggy = Pet.create(:name => "Shaggy")
+      #binding.pry
       visit "/owners/#{@owner.id}/edit"
       check(@shaggy.id)
       click_button "Update Owner"
