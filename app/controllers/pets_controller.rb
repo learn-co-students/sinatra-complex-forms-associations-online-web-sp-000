@@ -5,17 +5,17 @@ class PetsController < ApplicationController
     
     erb :'/pets/index' 
   end
-
+  # loads form to create a new pet
   get '/pets/new' do 
     @owners = Owner.all 
     erb :'/pets/new'
   end
-
+  # creates a new pet and associates an existing owner
+  # creates a new pet and a new owner
   post '/pets' do 
-    # @owners = Owner.all
     # binding.pry
     @pet = Pet.create(params[:pet])
-    
+    # if owner created assign it to pet's owner
     if !params["owner"]["name"].empty?
       @pet.owner = Owner.create(name: params["owner"]["name"])
     end 
@@ -23,7 +23,7 @@ class PetsController < ApplicationController
     #binding.pry 
     redirect to "pets/#{@pet.id}"
   end
-
+  # loads form to edit a pet and his owner
   get '/pets/:id/edit' do 
     @pet = Pet.find(params[:id])
     @owners = Owner.all 
@@ -35,7 +35,9 @@ class PetsController < ApplicationController
    
     erb :'/pets/show'
   end
-
+  # edit's the pet's name
+  # edit's the pet's owner with an existing owner
+  # edit's the pet's owner with a new owner
   patch '/pets/:id' do 
     if !params[:pet].keys.include?("owner_id")
       params[:pet]["owner_id"] = []
