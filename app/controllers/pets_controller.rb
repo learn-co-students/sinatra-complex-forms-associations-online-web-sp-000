@@ -12,6 +12,7 @@ class PetsController < ApplicationController
 
   post '/pets' do
 
+
     existing_owner = Owner.exists?(name: params["owner_name"])
 
     if !params["owner_name"].empty? && !existing_owner
@@ -22,6 +23,7 @@ class PetsController < ApplicationController
 
     @pet = Pet.create(name: params["pet_name"], owner_id: params["owner_id"])
     @pet.owner = pet_owner
+    @pet.save
 
     redirect to "pets/#{@pet.id}"
   end
@@ -29,8 +31,7 @@ class PetsController < ApplicationController
   get '/pets/:id/edit' do
 
     @pet = Pet.find(params[:id])
-    @owner = @pet.owner
-
+    @owners = Owner.all
     erb :'/pets/edit'
   end
 
