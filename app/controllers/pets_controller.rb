@@ -40,11 +40,11 @@ class PetsController < ApplicationController
     erb :'/pets/show'
   end
 
-  patch '/pets/:id' do
-
-    @pet = Pet.find(params[:id])
-    @pet.update(params["owner_name"])
-
-    redirect to "pets/#{@pet.id}"
-  end
+  # patch '/pets/:id' do
+  #
+  #   @pet = Pet.find(params[:id])
+  #   @pet.update(params["owner_name"])
+  #
+  #   redirect to "pets/#{@pet.id}"
+  # end
 end
