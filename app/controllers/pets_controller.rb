@@ -14,6 +14,8 @@ class PetsController < ApplicationController
 
     existing_owner = Owner.exists?(name: params["owner_name"])
 
+    binding.pry
+
     if !params["owner_name"].empty? && !existing_owner
       pet_owner = Owner.create(name: params["owner_name"])
     else
