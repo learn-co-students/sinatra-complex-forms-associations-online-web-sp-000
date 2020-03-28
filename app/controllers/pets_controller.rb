@@ -12,7 +12,6 @@ class PetsController < ApplicationController
 
   post '/pets' do
 
-
     existing_owner = Owner.exists?(name: params["owner_name"])
 
     if !params["owner_name"].empty? && !existing_owner
@@ -43,18 +42,30 @@ class PetsController < ApplicationController
 
   patch '/pets/:id' do
 
+    # @pet = Pet.find(params[:id])
+    # @pet.update(name: params[:pet_name])
+    #
+    # existing_owner = Owner.exists?(name: params["owner"]["name"])
+    #
+    # if !params["owner"]["name"].empty? && !existing_owner
+    #   pet_owner = Owner.create(name: params["owner"]["name"])
+    #   @pet.owner = pet_owner
+    #   @pet.save
+    # else
+    #   @pet.update(owner_id: params["owner_id"])
+    # end
+
     @pet = Pet.find(params[:id])
-    @pet.update(name: params[:pet_name])
+    # @pet.update(name: params[:pet_name], owner_id: params[:pet][:owner_id])
+    @pet.update(params[:pet])
 
-    existing_owner = Owner.exists?(name: params["owner"]["name"])
-
-    if !params["owner"]["name"].empty? && !existing_owner
+    if !params["owner"]["name"].empty?
       pet_owner = Owner.create(name: params["owner"]["name"])
       @pet.owner = pet_owner
-      @pet.save
-    else
-      @pet.update(owner_id: params["owner_id"])
     end
+
+  	@pet.save
+
 
     redirect to "pets/#{@pet.id}"
   end
