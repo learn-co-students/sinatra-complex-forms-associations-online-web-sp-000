@@ -24,7 +24,7 @@ describe "Pets Controller" do
 
     it "has a field for creating a new owner" do
       visit '/pets/new'
-      expect(page).to have_field(:owner_name)
+      expect(page).to have_field(:owner[name])
     end
 
 
