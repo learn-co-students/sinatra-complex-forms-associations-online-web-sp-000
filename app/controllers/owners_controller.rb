@@ -1,4 +1,3 @@
-
 require 'pry'
 class OwnersController < ApplicationController
 
@@ -20,6 +19,7 @@ class OwnersController < ApplicationController
       @owner.pets << Pet.select(@owner.id)
     end
     redirect "/owners/#{@owner.id}"
+
   end
 
   get '/owners/:id' do 
