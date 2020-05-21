@@ -5,13 +5,26 @@ class PetsController < ApplicationController
     erb :'/pets/index' 
   end
 
-  get '/pets/new' do 
+  get '/pets/new' do
+    @owners = Owner.all
     erb :'/pets/new'
   end
 
-  post '/pets' do 
+  post '/pets' do    
+    @pet = Pet.create(params[:pet])
 
-    redirect to "pets/#{@pet.id}"
+    if !params[:owner][:name].empty?
+      @pet.owner = Owner.create(params[:owner])
+      @pet.save
+    end
+
+    redirect "pets/#{@pet.id}"
+  end
+
+  get '/pets/:id/edit' do 
+    @pet = Pet.find(params[:id])
+    @owners = Owner.all
+    erb :'/pets/edit'
   end
 
   get '/pets/:id' do 
@@ -20,7 +33,20 @@ class PetsController < ApplicationController
   end
 
   patch '/pets/:id' do 
+    # if !params[:owner].keys.include?("pet_ids")
+    #   params[:owner]["pet_ids"] = []
+    # end
 
-    redirect to "pets/#{@pet.id}"
+    @pet = Pet.find(params[:id])
+    @pet.update(params[:pet])
+
+    if !params[:owner][:name].empty?
+      @pet.owner = Owner.create(params[:owner])
+      @pet.save
+    end
+
+    redirect "pets/#{@pet.id}"
   end
+
+  # would normally also need a delete route
 end
