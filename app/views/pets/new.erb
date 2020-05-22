@@ -6,7 +6,7 @@
         <br>
         <label>Owners</label>
         <%Owner.all.each do |owner|%>
-        <input type="radio" name="pet[owner_id]" value="<%=owner.id%>%" id="<%=owner.id%>%"><%=owner.name%></input>
+        <input type="radio" name="pet[owner_id]" value="<%=owner.id%>" id="<%=owner.id%>"><%=owner.name%></input>
         <%end%>
         <br>
         <label>Create a New Owner</label>
