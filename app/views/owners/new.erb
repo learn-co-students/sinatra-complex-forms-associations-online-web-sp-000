@@ -1,11 +1,12 @@
 <h1>Create a New Owner</h1>
+<img src = "https://s3.amazonaws.com/cdn-origin-etr.akc.org/wp-content/uploads/2017/04/12185602/Lagotto-Romangolo-Tongue-Out.jpg" alt ="doggie" title="dog">
 <form action="/owners" method="POST">
   <label>Owner Name:</label>
   <br>
   <input type="text" name="owner[name]">
   <br>
-  <p>Select an existing pet or create a new one below.</p>
-  <h3>Existing Pets</h3>
+  <p> <p style= "color: blue;"> <em> Select an existing pet or create a new one below. </em> </p>
+  <h3> <p style= "color: green;">Existing Pets</h3> </p>
   <% @pets.each do |pet| %>
     <input type="checkbox" name="owner[pet_ids][]" id="<%= pet.id %>" value="<%= pet.id %>"><%= pet.name %></input><br>
   <% end %>
