@@ -1,4 +1,7 @@
-<h1>Create a new Pet</h1>
+<h1> <em> <p style= "color: blue;"> Create a new Pet</h1> </em> </p>
+
+<img src = "https://img1.thelist.com/img/gallery/ways-to-tell-if-youre-really-happy/intro-1494540038.jpg" alt ="doggie" title="dog">
+
 <form action="/pets" method="POST">
   <label>Name:</label><br></br>
     <input type="text" name="pet[name]" id="pet_name"><br></br>
@@ -6,8 +9,8 @@
     <%@owners.each do |owner|%>
       <input type="radio" name="pet[owner_id]" id=<%= owner.id %> value="<%= owner.id %>"><%= owner.name %></input>
     <%end%><br /><br />
-    <label>or, create a new owner:</label><br></br>
-    <label>Name:</label>
+    <label>or, create a new <b> owner: </b> </label><br></br>
+    <label> <em> Name: </em> </label>
       <input  type="text" name="owner[name]" id="owner_name"></input><br></br>
   <input type="submit" value="Create Pet">
 </form>
