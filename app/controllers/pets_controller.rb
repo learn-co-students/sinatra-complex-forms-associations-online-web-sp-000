@@ -11,10 +11,10 @@ class PetsController < ApplicationController
   end
 
   post '/pets' do 
-    binding.pry
-    # params = {"pet"=>{"name"=>"Challo"}, "owner"=>{"name"=>"Ben"}}
-    @pet = Pet.create(params[:pet])
-    @pet.name = params[:pet][:name]
+    # binding.pry
+    # {"pet"=>{"owner_id"=>"1", "name"=>"Michael"}, "owner"=>{"name"=>""}}
+    # @pet = Pet.create(params[:pet])
+    # @pet.name = params[:pet][:name]
     redirect to "pets/#{@pet.id}"
   end
 
