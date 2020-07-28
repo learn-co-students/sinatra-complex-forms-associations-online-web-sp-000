@@ -14,7 +14,7 @@ method="POST">
 <h3>Existing Owner</h3>
 <% @owners.each do |owners| %>
 <input type="radio" name= "pet[owner_id]" id="<% owners.id%>" 
-value="<%= owners.id%>" <%='checked' if owners.name == @pet.owner.name %>><%=owners.name%>"</input><br>
+value="<%= owners.id%>" <%='checked' if owners.id == @pet.owner.id %>><%=owners.name%>"</input><br>
 <% end %>
 
 <h3>New Owner</h3>
