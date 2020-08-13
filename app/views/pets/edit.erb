@@ -11,9 +11,8 @@
   <p>Select an existing owner or create a new one below</p>
 
   <h3>Existing Owners</h3>
-  <p>Current Owner: <%= @pet.owner.name %></p>
-  <% @owners.each do |owner| %>
-  <input type="radio" name="pet[owner_id][]" id="<%= owner.id %>" value="<%= owner.id %>"> <%= owner.name %></input><br>
+  <% Owner.all.each do |owner| %>
+  <input type="radio" name="pet[owner_id]" id="<%= owner.id %>" value="<%= owner.id %>" <%= 'checked' if @pet.owner == owner %>> <%= owner.name %></input><br>
   <% end %>
   <br>
 
