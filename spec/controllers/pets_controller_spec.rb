@@ -101,6 +101,7 @@ describe "Pets Controller" do
       fill_in "owner_name", :with => "Samantha"
       click_button "Update Pet"
       expect(Pet.last.owner.name).to eq("Samantha")
+  
     end
 
 
