@@ -6,15 +6,17 @@ class OwnersController < ApplicationController
   end
 
   get '/owners/new' do #create
-    @pets = Pet.all   #why do we have to see all pets? #how does it access the Pet class?
+    @pets = Pet.all   #how does it access the Pet class? #the access here is trough has_many - belongs_to relatonship
     erb :'/owners/new'
   end
 
   post '/owners' do #create
-    @owner = Owner.create(params[:owner])  #why is here params[:owner] with a symbol
-    if !params["pet"]["name"].empty?   #and here it is params["pet"]["name"]
-      @owner.pets << Pet.create(name: params["pet"]["name"])  #why are we creating this way, why not Pet.create(params[:pet])
-
+    @owner = Owner.create(params[:owner])  #apparently this is the same thing as Owner.create(name: params[:owner][:name]) but just in this case bc we only have name as params
+    
+    if !params["pet"]["name"].empty?   
+      
+      @owner.pets << Pet.create(name: params[:pet][:name])  #since we are in owner, pet is created by the name input by user as a value in pet[name]
+      
 
       # When using the shovel operator, ActiveRecord instantly fires update SQL
       # without waiting for the save or update call on the parent object,
@@ -41,7 +43,7 @@ class OwnersController < ApplicationController
     @owner.update(params[:owner])
 
     if !params["pet"]["name"].empty?
-      @owner.pets << Pet.create(name: params["pet"]["name"])
+      @owner.pets << Pet.create(name: params[:pet][:name])
     end
 
     redirect "/owners/#{@owner.id}"

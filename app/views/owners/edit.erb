@@ -5,7 +5,7 @@
   <form action="/owners/<%= @owner.id %>" method="POST">
     <input id="hidden" type="hidden" name="_method" value="patch">
     <label>Edit the Owner's Name:</label>
-    <input type="text" name="owner[name]" value="<%= @owner.name %>">  <%#again, why owner[name] instead of owner%>
+    <input type="text" name="owner[name]" value="<%= @owner.name %>">  <%#name="owner[name]"  this we are using to let ruby know WHAT to change. value="<%= @owner.name we use to actually input the different name%>
 
     <br>
     <p>Select an existing pet or create a new one below.</p>
@@ -15,11 +15,11 @@
     <% @pets.each do |pet| %>
       <input type="checkbox" name="owner[pet_ids][]" id="<%= pet.id %>" value="<%= pet.id %>" <%='checked' if @owner.pets.include?(pet) %>><%= pet.name %></input><br>
     <% end %>   
-    <br>      <%#again, ask why name="owner[pet_ids][]" and value="<%= pet.id and where is the connection%>
+    <br>      
 
     <h3>New Pet</h3>
     <label>Pet Name: </label>
-    <input type="text" name="pet[name]" id="pet_name"></input>  <%#two questions%>
+    <input type="text" name="pet[name]" id="pet_name"></input>  
     <br><br>
 
     <input type="submit" value="Update Owner">

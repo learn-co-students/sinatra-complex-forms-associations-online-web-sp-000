@@ -11,13 +11,13 @@
 
   <h3>Existing Pets</h3>
   <% @pets.each do |pet| %>
-    <input type="checkbox" name="owner[pet_ids][]" id="<%= pet.id %>" value="<%= pet.id %>"><%= pet.name %><br> <%#what do we use value for???????%>
+    <input type="checkbox" name="owner[pet_ids][]" id="<%= pet.id %>" value="<%= pet.id %>"><%= pet.name %><br> <%#value is so we can use id of a pet to put it in owners array???????%>
   <% end %>
   <br>
 
   <h3>New Pet</h3>
   <label>Pet Name: </label>
-  <input type="text" name="pet[name]" id="pet_name"></input>  <%#why name = pet[name] and why id = "pet_name"? Is that Pet.name? How is it connected???????%>
+  <input type="text" name="pet[name]" id="pet_name"></input>  <%#why name = pet[name] this is how we access the name of a pet%>
   <br><br>
 
   <input type="submit" value="Create Owner">
