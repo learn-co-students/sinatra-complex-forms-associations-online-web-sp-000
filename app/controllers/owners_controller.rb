@@ -20,6 +20,7 @@ class OwnersController < ApplicationController
 
   get '/owners/:id/edit' do
     @owner = Owner.find(params[:id])
+    @pets = Pet.all    #access to pets, ERB to get all of the pets with Pet.all
     erb :'/owners/edit'
   end
 
