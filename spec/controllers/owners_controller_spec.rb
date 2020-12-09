@@ -1,4 +1,5 @@
 require 'spec_helper'
+require 'pry'
 
 describe "Owners Controller" do
   describe "new action" do 

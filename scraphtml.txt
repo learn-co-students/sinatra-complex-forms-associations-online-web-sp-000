@@ -13,8 +13,11 @@
 
 <% end %></p>
 
+NO. DO NOT DO THIS. 
+<p><input type="radio" name="owner_id" id="owner[name]" value="owner[name]"> New Owner</p>
+
 <h3>Add an Owner</h3>
-<input type="text" name="owner[name]" id="owner_name"></input><br>
+<input type="text" name="owner[name]" id="owner_name" value="owner_name"></input><br>
 
 <input type="submit" value="Update Pet"></input>
 </form>
