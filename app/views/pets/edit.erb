@@ -1,21 +1,20 @@
 <h1>Update Pet</h1>
-<h3>Current Name: <%= 
+<h3>Current Name: <%= @pet.name %>
 
-<form method = "post" action = "/pets/#{@pet.id}">
-    <input id="hidden" type="hidden" name="_method" value="patch">
-    <h5>Name: <input type = "text" name = "pet[name]" id = "pet_name"></h5>
+<form method= "post" action= "/pets/<%= @pet.id %>">
+<input type= "hidden" name= "_method" value= "patch">
+<h3>Change Name: <input type= "text" name= "pet[name]" id= "pet_name"></h3>
 
-    <h4>Select an existing owner or create one</h4>
-    <h4>Existing Owners</h4>
-    <% @owners.each do | sel | %>
-        <input type = "checkbox" name = "pet[owner_ids][]" id = "<%= sel.id %>" value = "%= sel.id %>" <%= 'checked' if #pet.owner == (sel) %>><%= sel.name %>>
-        </input>
-    <% end %>
+<h3>Existing Owners</h3>
+<% @owners.each do | sel | %>
+    <input type= "radio" name= "pet[owner]" id= "<%= sel.id %>" value= "<%= sel.id %>" <%= 'checked' if @pet.owner.id = sel.id %>><%= sel.name %>
+    </input>
+<% end %>  
 
-    <h4>New Owner</h4>
-    <p>Owner Name: <input type = "text" name = "owner[name]" id = "owner_name">
-    <br>
-    <input type = "submit" name = "submit"
+<h3>Create a New Owner</h3>
+    <p>Owner Name: <input type= "text" name= "owner[name]" id= "owner_name"></p>
+
+<input type= "submit" name= "Update Pet">
 </form>
 
 
