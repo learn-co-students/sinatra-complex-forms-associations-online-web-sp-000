@@ -19,6 +19,7 @@ class OwnersController < ApplicationController
   end
 
   get '/owners/:id/edit' do
+    @pets = Pet.all
     @owner = Owner.find(params[:id])
     erb :'/owners/edit'
   end
@@ -29,7 +30,8 @@ class OwnersController < ApplicationController
   end
 
   patch '/owners/:id' do
-    if !params[:owner].keys.include?("pet_ids")
+    if
+      !params[:owner].keys.include?("pet_ids")
       params[:owner]["pet_ids"] = []
     end
 
