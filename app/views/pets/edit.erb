@@ -3,7 +3,7 @@
 <h2>Edits for <%= @pet.name %></h2>
 
   <form action="/pets/<%= @pet.id %>" method="POST">
-    <input id="hidden" type="hidden" name="_method" value="patch">
+    <!-- <input id="hidden" type="hidden" name="_method" value="patch"> -->
     <label>Edit the Pet's Name:</label>
     <br>
     <input type="text" name="pet[name]" id="pet_name" value="<%= @pet.name %>">
@@ -13,8 +13,8 @@
 
 
     <h3>Existing Owners</h3>
-    <% @pet.owners.each do |owner| %>
-      <input type="checkbox" name="pet[owner_ids][]" id="<%= owner.id %>" value="<%= owner.id %>" <%='checked' if @pet.owners.include?(owner) %>><%= owner.name %></input><br>
+    <% Owner.all.each do |owner| %>
+      <input type="radio" name="pet[owner_id][]" id="<%= owner.id %>" <%='checked' if @pet.owner == owner %>><%= owner.name %>
     <% end %>
     <br>
 
