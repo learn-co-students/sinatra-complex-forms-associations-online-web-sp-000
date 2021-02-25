@@ -17,7 +17,7 @@ class OwnersController < ApplicationController
   post '/owners' do # since we set up our associations such that an owner has many pets, ActiveRecord is smart enough to take that additional key of "pets_ids" (pointing to an array of numbers), find the pets that have those IDs, and associate them to the given owner using mass assignment here
     @owner = Owner.create(params[:owner])
     if !params["pet"]["name"].empty?
-      @owner.pets << Pet.create(name: params["pet"]["name"])
+      @owner.pets << Pet.create(name: params["pet"]["name"]) # we don't have to save here, because we're adding something to an existing array
     end
     # binding.pry
   redirect "/owners/#{@owner.id}"
