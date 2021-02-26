@@ -1,0 +1,3 @@
+1. because an owner can have many pets, we want to be able to choose which of the existing pets in our database to associate to a new owner when the owner is being created.
+2. our form for a new owner must contain a way to select a number of existing pets to associate with that owner as well as a way to create a brand new pet to associate with that owner
+3. the same is true of editing a given owner: we should be able to select and deselect existing pets and/or create a new pet to associate with the owner.

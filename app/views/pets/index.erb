@@ -1,1 +1,5 @@
-index.erb
+<h1>Select a Pet to view below:</h1>
+<% @pets.each do |pet| %>
+<h2><%= pet.name %></h2>
+<a href="/pets/<%= pet.id %>">Show Pet</a>
+<% end %>
