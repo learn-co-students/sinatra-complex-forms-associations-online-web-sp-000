@@ -9,7 +9,6 @@ class PetsController <ApplicationController
   end
 
   get '/pets' do
-    "hello world"
     @pets = Pet.all
     erb :'/pets/index' 
   end
@@ -20,10 +19,12 @@ class PetsController <ApplicationController
   end
 
   post '/pets' do 
-    @pet = Pet.create(params[:pet])
+   
+    @pet = Pet.create(name: params[:pet_name], owner_id: params[:owner_id])
     if !params["owner"]["name"].empty?
       @pet.owner = Owner.create(name: params["owner"]["name"])
-       
+       #attribute : data cooresponding
+
     end
     @pet.save
     redirect "/pets/#{@pet.id}"
