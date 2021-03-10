@@ -1,5 +1,4 @@
-class PetsController < ApplicationController
-
+class PetsController <ApplicationController
 
 
   configure do
@@ -10,6 +9,7 @@ class PetsController < ApplicationController
   end
 
   get '/pets' do
+    "hello world"
     @pets = Pet.all
     erb :'/pets/index' 
   end
@@ -17,7 +17,6 @@ class PetsController < ApplicationController
   get '/pets/new' do 
     @owners = Owner.all
     erb :'/pets/new'
-
   end
 
   post '/pets' do 
@@ -26,7 +25,7 @@ class PetsController < ApplicationController
       owner = Owner.create(name: params["owner"]["name"])
       owner.pets << @pet
     end
-    redirect "pets/#{@pet.id}"
+    redirect "/pets/#{@pet.id}"
 
   end
 
@@ -46,7 +45,7 @@ class PetsController < ApplicationController
         owner = Owner.create(name: params["owner"]["name"])
         owner.pets << @pet
       end
-  redirect "pets/#{@pet.id}"
+  redirect "/pets/#{@pet.id}"
 
   end
 end
