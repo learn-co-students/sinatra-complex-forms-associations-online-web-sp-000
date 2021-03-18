@@ -1,1 +1,19 @@
 index.erb
+<h1>All Owners</h1>
+<% @owners.each do |owner| %>
+  <p><%= owner.name %></p>
+<% end %><br><br>
+
+<h1>All Owners' Pets</h1>
+<% @owners.each do |owner| %>
+ <ul>
+    <li> <%= owner.name %></li>
+ </ul>
+  [
+    <% owner.pets.collect do |pet| %>
+      <%= pet.name %>
+    <% end %>
+  ]
+<% end %>
+
+    
